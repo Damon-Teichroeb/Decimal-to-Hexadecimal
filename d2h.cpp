@@ -5,21 +5,8 @@ using namespace std;
 #define ASCII_ZERO 48 // ASCII code for the number zero.
 #define MAX_HEX    16 // Maximum number of hexadecimal digits.
 
-// Asks if the user wants to convert another number.
-bool again()
-{
-    char answer;
-
-    cout << "\n\n\n";
-    do
-    {
-        cout << "Would you like to convert another number? (y/n): ";
-        cin  >> answer;
-        answer = tolower(answer);
-    }
-    while (answer != 'y' && answer != 'n');
-    return answer == 'y';
-}
+// Asks the user if they want to convert another number.
+bool again();
 
 int main()
 {
@@ -30,7 +17,7 @@ int main()
     {
         // Gets the user's decimal number.
         cout << "\n\nPlease enter your number: ";
-        cin  >> decimal[index];
+        cin  >> decimal[0];
         
         // Converts the decimal number into a hexadecimal number.
         while (decimal[index] > 0 && index < MAX_HEX)
@@ -48,8 +35,8 @@ int main()
 
         // Prints the hexadecimal number.
         cout << "\nYour hexadecimal number is: ";
-        for (; index >= 0; index--) cout << (char)decimal[index];
-        index++;
+        for (; index > 0; index--) cout << (char)decimal[index];
+        cout << (char)decimal[index];
     }
     while (again()); // Asks if the user wants to convert another number.
 
@@ -58,4 +45,20 @@ int main()
          <<   "\nHave a nice day! ;-)"
          << "\n\n\n";
     return 0;
+}
+
+// Asks the user if they want to convert another number.
+bool again()
+{
+    char answer;
+
+    cout << "\n\n\n";
+    do
+    {
+        cout << "Would you like to convert another number? (y/n): ";
+        cin  >> answer;
+        answer = tolower(answer);
+    }
+    while (answer != 'y' && answer != 'n');
+    return answer == 'y';
 }
